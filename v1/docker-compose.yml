@@ -1,0 +1,18 @@
+services:
+  emby-probe:
+    build: .
+    container_name: emby-probe
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8787
+      REFRESH_INTERVAL_MS: 300000
+      PROBE_TIMEOUT_MS: 8000
+      APP_SECRET: change-this-secret
+      ADMIN_TOKEN: change-this-token
+      ADMIN_PASSWORD: change-this-password
+      PUBLIC_WRITE_API: "true"
+    volumes:
+      - ./backend/data:/app/backend/data
